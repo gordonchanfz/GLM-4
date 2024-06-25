@@ -21,7 +21,7 @@ EventSourceResponse.DEFAULT_PING_INTERVAL = 1000
 import os
 
 MODEL_PATH = os.environ.get('MODEL_PATH', 'THUDM/glm-4-9b-chat')
-MAX_MODEL_LENGTH = 8192
+MAX_MODEL_LENGTH = 2048
 
 
 @asynccontextmanager
@@ -620,8 +620,8 @@ if __name__ == "__main__":
         model=MODEL_PATH,
         tokenizer=MODEL_PATH,
         # 如果你有多张显卡，可以在这里设置成你的显卡数量
-        tensor_parallel_size=1,
-        dtype="bfloat16",
+        tensor_parallel_size=2,
+        dtype="half",
         trust_remote_code=True,
         # 占用显存的比例，请根据你的显卡显存大小设置合适的值，例如，如果你的显卡有80G，您只想使用24G，请按照24/80=0.3设置
         gpu_memory_utilization=0.9,
